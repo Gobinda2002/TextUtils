@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import Nevbar from './components/Nevbar';
+import TextForm from './components/TextForm';
+import { useState } from 'react';
 
 function App() {
+  const [mode, setMode] = useState('light');
+
+  const toggleMode =() =>{
+      if(mode === 'light'){
+        setMode('dark');
+        document.body.style.backgroundColor ='#090c18';
+      }else{
+        setMode('light');
+        document.body.style.backgroundColor ='white';
+      }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Nevbar title="Textutils" mode={mode} toggleMode={toggleMode}/>
+      <div className="container">
+      <TextForm title = "Enter your Text here" mode={mode}/>
+      </div>
+    </>
   );
 }
 
